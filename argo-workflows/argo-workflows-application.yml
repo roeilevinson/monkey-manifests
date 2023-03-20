@@ -11,14 +11,15 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: 'https://github.com/argoproj/argo-helm'
-    path:  charts/argo-workflows
-    targetRevision: HEAD
-    # helm:
-    #   parameters:
-    #     - name: server.extraArgs
-    #       value: [--auth-mode=server]
+  sources:
+    - repoURL: 'https://github.com/argoproj/argo-helm'
+      path:  charts/argo-workflows
+      targetRevision: HEAD
+      helm:
+        values: |
+          server:
+            extraArgs:
+            - --auth-mode=server  
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argo-workflows
@@ -26,3 +27,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
+#serviceType: LoadBalancer
+
