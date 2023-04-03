@@ -1,0 +1,33 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: github-ingress
+#   namespace: argo-events
+#   annotations:
+#     kubernetes.io/ingress.class: nginx
+#     app.kubernetes.io/name: github-ingress
+#     #nginx.ingress.kubernetes.io/rewrite-target: /
+    
+#     cert-manager.io/cluster-issuer: letsencrypt-nginx
+#     acme.cert-manager.io/http01-edit-in-place: "true"
+
+#     #nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+#     #nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#     #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+# spec:
+#   rules:
+#   - host: github.tradevisdemo.online
+#     http:
+#       paths:
+#       - path: /push
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: github-event-source-eventsource-svc
+#             port:
+#               number: 12000
+#   tls:
+#   - hosts:
+#     - github.tradevisdemo.online
+#     secretName: letsencrypt-nginx
+

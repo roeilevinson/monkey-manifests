@@ -5,17 +5,22 @@ metadata:
   namespace: argocd
 spec:
     project: default
-    source:
-      repoURL: 'https://github.com/argoproj/argo-helm'
-      path: charts/argo-cd
-      targetRevision: HEAD
+    sources:
+      - repoURL: 'https://github.com/argoproj/argo-helm'
+        path: charts/argo-cd
+        targetRevision: HEAD
+      - repoURL: 'https://github.com/roeilevinson/monkey-manifests'
+        targetRevision: HEAD
+        path: argocd/ingress
+        directory:
+          recurse: true
     destination:
       server: 'https://kubernetes.default.svc'
       namespace: argocd
     syncPolicy:
       automated:
-        prune: false
-        selfHeal: false
+        prune: true
+        selfHeal: true
 
 # helm: 
 #       parameters:

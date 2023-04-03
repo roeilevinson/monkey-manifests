@@ -20,6 +20,11 @@ spec:
           server:
             extraArgs:
             - --auth-mode=server  
+    - repoURL: 'https://github.com/roeilevinson/monkey-manifests'
+      targetRevision: HEAD
+      path: ingress/argo-workflows-ingress
+      directory:
+        recurse: true
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argo-workflows
